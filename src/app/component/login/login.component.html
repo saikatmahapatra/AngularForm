@@ -1,0 +1,42 @@
+<div class="login-module">
+    <div class="main-section">
+      <div class="left-section">
+        <div class="logo">
+          <img src="" alt="hospital-logo"/>
+        </div>
+        <p>Easy online management saves you time and effort.</p>
+      </div>
+      <div class="right-section">
+        <p class="login-text">Login</p>
+        <form [formGroup]="loginForm">
+          <div class="username-input">
+            <label>Username:</label>
+            <input placeholder="Enter Your Username" type="text" formControlName="UserName"/>
+            <span *ngIf="loginForm.controls['UserName'].touched && loginForm.controls['UserName'].errors?.['required']">UserName Required</span>
+            
+          </div>
+          <div class="password-input">
+            <label class="">Password:</label>
+            <input placeholder="Enter Your Password" type="text" formControlName="Password"/>
+          </div>
+          <div class="button-group">
+            
+            <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit($event)">Submit</button>
+            <Button>Forgot Password</Button>
+          </div>
+        </form>
+        <!-- <form [formGroup]="loginForm">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" formControlName="UserName">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" formControlName="Password">
+        
+          
+        
+          <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit($event)">Submit</button>
+          
+        </form> -->
+        {{loginForm.value | json}}
+      </div>
+    </div>
+  </div>
