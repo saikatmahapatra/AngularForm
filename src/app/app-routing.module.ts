@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-//import { LoginComponentComponent } from './login/login-component/login-component.component';
-//import { LoginComponent } from './component/login/login.component';
-
+import { ErrorPageNotFoundComponent } from './error-page-not-found/error-page-not-found.component';
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    children: [
-      {
-        path: 'login',
-        loadChildren: () =>
-          import('./component/login/login.module').then((m) => m.LoginModule),
-      },
-    ],
+    pathMatch: 'full',
+    redirectTo: 'login'
   },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./auth/auth.module').then((m) => m.AuthModule)
+  },
+  {
+    path: '**', // wildcard will be at always last
+    component: ErrorPageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

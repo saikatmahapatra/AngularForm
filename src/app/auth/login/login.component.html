@@ -1,3 +1,4 @@
+<h1>Login to continue...</h1>
 <div class="login-module">
     <div class="main-section">
       <div class="left-section">
@@ -12,7 +13,7 @@
           <div class="username-input">
             <label>Username:</label>
             <input placeholder="Enter Your Username" type="text" formControlName="UserName"/>
-            <span *ngIf="loginForm.controls['UserName'].touched && loginForm.controls['UserName'].errors?.['required']">UserName Required</span>
+            <span class="err-msg" *ngIf="loginForm.controls['UserName'].touched && loginForm.controls['UserName'].errors?.['required']">UserName Required</span>
             
           </div>
           <div class="password-input">
@@ -21,8 +22,9 @@
           </div>
           <div class="button-group">
             
-            <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit($event)">Submit</button>
-            <Button>Forgot Password</Button>
+            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit($event)">Submit</button>
+            
+            <a [routerLink]="['forgot-password']" >Forgot Password?</a>
           </div>
         </form>
         <!-- <form [formGroup]="loginForm">
